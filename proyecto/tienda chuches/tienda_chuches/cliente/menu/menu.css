@@ -1,0 +1,28 @@
+
+ /*{
+	margin: 0;
+	padding: 0;
+}*/
+
+#container {
+  width: 100%;
+  margin: 10px auto;
+}
+
+li {
+  list-style: none;
+  padding: 1%;
+  box-sizing: border-box;
+  font-weight: bold;
+  font-size: 95%;
+
+}
+
+
+#first_level > li {
+  float: left;
+  display: inline;
+  width:11%;
+  background-color: lightgreen;
+  position: relative;
+}
