@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 02-02-2017 a las 08:56:52
+-- Tiempo de generación: 08-02-2017 a las 12:20:45
 -- Versión del servidor: 5.7.17-0ubuntu0.16.04.1
 -- Versión de PHP: 7.0.15-1+deb.sury.org~xenial+1
 
@@ -61,7 +61,6 @@ CREATE TABLE `chuches` (
   `img1_chu` varchar(150) DEFAULT NULL,
   `img2_chu` varchar(150) DEFAULT NULL,
   `img3_chu` varchar(150) DEFAULT NULL,
-  `img4_chu` varchar(150) DEFAULT NULL,
   `precio` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -69,16 +68,15 @@ CREATE TABLE `chuches` (
 -- Volcado de datos para la tabla `chuches`
 --
 
-INSERT INTO `chuches` (`id_chuche`, `id_categoria`, `nombre_chu`, `descripcion`, `img_chu`, `img1_chu`, `img2_chu`, `img3_chu`, `img4_chu`, `precio`) VALUES
-(100, 1, 'BOLSITAS FINI FUN SURTIDO', 'SURTIDO 360 GRS 18 BOLSITAS APROX', 'https://www.chuchesonline.com/9418-thickbox_default/bolsitas-fini-fun-surtido.jpg', NULL, NULL, NULL, NULL, 2.72),
-(101, 2, 'CARAMELO ACIDO MANZANA', 'CARAMELO ACIDO MANZANA EL AVION\r\nBOLSA 1 KG (300 CARAMELOS APROX).', 'https://www.chuchesonline.com/7723-thickbox_default/acido-manzana-el-avion.jpg', NULL, NULL, NULL, NULL, 6.8),
-(102, 3, 'CHOCO JUMBOS', 'NUBE GIGANTE CON CUBIERTA CHOCOLATE\r\nESTUCHE 24 NUBES FINI CUBIERTA CHOCOLATE', 'https://www.chuchesonline.com/8965-thickbox_default/choco-jumbos-nube-gigante-cubierta-choco.jpg', NULL, NULL, NULL, NULL, 7.84),
-(103, 4, 'VARITAS MAGICAS LATA', 'LATA CON 150 PAJITAS PICA', 'https://www.chuchesonline.com/7909-thickbox_default/varitas-magicas-lata.jpg', NULL, NULL, NULL, NULL, 12.63),
-(104, 5, 'REGALIZ GATOS XXL', 'ESTUCHE 40 UNIDADES', 'https://www.chuchesonline.com/2572-thickbox_default/regaliz-gatos-xxl-40-uds.jpg', NULL, NULL, NULL, NULL, 6.46),
-(105, 6, 'CHICLE DUBBLE CRY BABY', 'ESTUCHE 200 BOLAS CHICLE SUPER ACIDAS', 'https://www.chuchesonline.com/9558-thickbox_default/chicle-dubble-cry-baby.jpg', NULL, NULL, NULL, NULL, 7.59),
-(106, 7, 'GELATINA FRESA TARRINAS ZAMBA', 'TARRO 48 TARRINAS +CUCHARAS\r\n', 'https://www.chuchesonline.com/8924-thickbox_default/gelatina-fresa-tarrinas-zamba.jpg', NULL, NULL, NULL, NULL, 8.58),
-(107, 8, 'PRINGLES TORTILLA ORIGINAL', 'BOTE 160 GRAMOS PRINGLES MAIZ', 'https://www.chuchesonline.com/7098-thickbox_default/pringles-tortilla-original.jpg', NULL, NULL, NULL, NULL, 2.6),
-(108, 8, 'ALGODON CANDY BICOLOR', 'ESTUCHE CON 6 TARROS', 'https://www.chuchesonline.com/4791-thickbox_default/algodon-candy-bicolor.jpg', NULL, NULL, NULL, NULL, 13.3);
+INSERT INTO `chuches` (`id_chuche`, `id_categoria`, `nombre_chu`, `descripcion`, `img_chu`, `img1_chu`, `img2_chu`, `img3_chu`, `precio`) VALUES
+(100, 1, 'BOLSITAS FINI FUN SURTIDO', 'SURTIDO 360 GRS 18 BOLSITAS APROX', '../imgchu/bolsitafini.jpg', NULL, NULL, NULL, 2.71),
+(101, 2, 'CARAMELO ACIDO MANZANA', 'CARAMELO ACIDO MANZANA EL AVION\r\nBOLSA 1 KG (300 CARAMELOS APROX).', '../imgchu/acido-manzana-el-avion.jpg', '../imgchu/acido-manzana.jpg', NULL, NULL, 6.8),
+(102, 3, 'CHOCO JUMBOS', 'NUBE GIGANTE CON CUBIERTA CHOCOLATE\r\nESTUCHE 24 NUBES FINI CUBIERTA CHOCOLATE', NULL, NULL, NULL, NULL, 7.84),
+(103, 4, 'VARITAS MAGICAS LATA', 'LATA CON 150 PAJITAS PICA', NULL, NULL, NULL, NULL, 12.63),
+(104, 5, 'REGALIZ GATOS XXL', 'ESTUCHE 40 UNIDADES', NULL, NULL, NULL, NULL, 6.46),
+(105, 6, 'CHICLE DUBBLE CRY BABY', 'ESTUCHE 200 BOLAS CHICLE SUPER ACIDAS', NULL, NULL, NULL, NULL, 7.59),
+(106, 7, 'GELATINA FRESA TARRINAS ZAMBA', 'TARRO 48 TARRINAS +CUCHARAS\r\n', NULL, NULL, NULL, NULL, 8.58),
+(107, 8, 'PRINGLES TORTILLA ORIGINAL', 'BOTE 160 GRAMOS PRINGLES MAIZ', NULL, NULL, NULL, NULL, 2.6);
 
 -- --------------------------------------------------------
 
@@ -87,10 +85,10 @@ INSERT INTO `chuches` (`id_chuche`, `id_categoria`, `nombre_chu`, `descripcion`,
 --
 
 CREATE TABLE `cliente` (
-  `nombre` varchar(25) DEFAULT NULL,
+  `nombre` varchar(25) NOT NULL,
   `apellidos` varchar(50) DEFAULT NULL,
   `direccion` varchar(50) DEFAULT NULL,
-  `dni` varchar(10) NOT NULL,
+  `apodo` varchar(50) NOT NULL,
   `email` varchar(50) DEFAULT NULL,
   `contrasenia` varchar(64) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -99,10 +97,10 @@ CREATE TABLE `cliente` (
 -- Volcado de datos para la tabla `cliente`
 --
 
-INSERT INTO `cliente` (`nombre`, `apellidos`, `direccion`, `dni`, `email`, `contrasenia`) VALUES
-('admin', NULL, NULL, '11111111A', NULL, '81dc9bdb52d04dc20036dbd8313ed055'),
-('Alejandro', 'Ramos', 'calle san jacinto,Sevilla', '44556120A', 'alejandroramos@correo.net', '81dc9bdb52d04dc20036dbd8313ed055'),
-('Carmen', 'Jimenez', 'calle san mario,Madrid', '88546129G', 'carmen4516@correo.edu', '81dc9bdb52d04dc20036dbd8313ed055');
+INSERT INTO `cliente` (`nombre`, `apellidos`, `direccion`, `apodo`, `email`, `contrasenia`) VALUES
+('admin', NULL, NULL, 'admin', NULL, '81dc9bdb52d04dc20036dbd8313ed055'),
+('ana', 'meleiro sanchez', 'Sevilla', 'Ana', 'ana@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055'),
+('Carmen', 'Jimenez', 'calle san mario,Madrid', 'Carmen', 'carmen4516@correo.edu', '81dc9bdb52d04dc20036dbd8313ed055');
 
 -- --------------------------------------------------------
 
@@ -121,7 +119,6 @@ CREATE TABLE `contiene` (
 --
 
 INSERT INTO `contiene` (`id_pedido`, `id_chuche`, `cantidad`) VALUES
-(1, 100, 1),
 (2, 101, 2);
 
 -- --------------------------------------------------------
@@ -132,7 +129,7 @@ INSERT INTO `contiene` (`id_pedido`, `id_chuche`, `cantidad`) VALUES
 
 CREATE TABLE `pedido` (
   `id_pedido` int(10) NOT NULL,
-  `dni` varchar(10) NOT NULL,
+  `apodo` varchar(50) NOT NULL,
   `fecha` date NOT NULL,
   `precio_total` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -141,9 +138,8 @@ CREATE TABLE `pedido` (
 -- Volcado de datos para la tabla `pedido`
 --
 
-INSERT INTO `pedido` (`id_pedido`, `dni`, `fecha`, `precio_total`) VALUES
-(1, '44556120A', '2017-01-11', '2.72'),
-(2, '88546129G', '2017-01-27', '13.60');
+INSERT INTO `pedido` (`id_pedido`, `apodo`, `fecha`, `precio_total`) VALUES
+(2, 'Carmen', '2017-01-27', '13.60');
 
 --
 -- Índices para tablas volcadas
@@ -159,7 +155,7 @@ ALTER TABLE `categoria`
 -- Indices de la tabla `chuches`
 --
 ALTER TABLE `chuches`
-  ADD PRIMARY KEY (`id_chuche`),
+  ADD PRIMARY KEY (`id_chuche`,`id_categoria`),
   ADD UNIQUE KEY `id_chuche_3` (`id_chuche`),
   ADD KEY `id_chuche` (`id_chuche`),
   ADD KEY `id_chuche_2` (`id_chuche`),
@@ -170,44 +166,44 @@ ALTER TABLE `chuches`
 -- Indices de la tabla `cliente`
 --
 ALTER TABLE `cliente`
-  ADD PRIMARY KEY (`dni`);
+  ADD PRIMARY KEY (`apodo`);
 
 --
 -- Indices de la tabla `contiene`
 --
 ALTER TABLE `contiene`
   ADD PRIMARY KEY (`id_pedido`,`id_chuche`),
-  ADD KEY `id_chuches` (`id_chuche`);
+  ADD KEY `id_chuche` (`id_chuche`);
 
 --
 -- Indices de la tabla `pedido`
 --
 ALTER TABLE `pedido`
-  ADD PRIMARY KEY (`id_pedido`),
-  ADD KEY `dni` (`dni`);
+  ADD PRIMARY KEY (`id_pedido`,`apodo`),
+  ADD KEY `dni` (`apodo`);
 
 --
 -- Restricciones para tablas volcadas
 --
 
 --
--- Filtros para la tabla `categoria`
+-- Filtros para la tabla `chuches`
 --
-ALTER TABLE `categoria`
-  ADD CONSTRAINT `categoria_ibfk_1` FOREIGN KEY (`id_categoria`) REFERENCES `chuches` (`id_categoria`);
+ALTER TABLE `chuches`
+  ADD CONSTRAINT `chuches_ibfk_1` FOREIGN KEY (`id_categoria`) REFERENCES `categoria` (`id_categoria`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `contiene`
 --
 ALTER TABLE `contiene`
-  ADD CONSTRAINT `contiene_ibfk_1` FOREIGN KEY (`id_pedido`) REFERENCES `pedido` (`id_pedido`),
-  ADD CONSTRAINT `contiene_ibfk_2` FOREIGN KEY (`id_chuche`) REFERENCES `chuches` (`id_chuche`);
+  ADD CONSTRAINT `contiene_ibfk_1` FOREIGN KEY (`id_pedido`) REFERENCES `pedido` (`id_pedido`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `contiene_ibfk_2` FOREIGN KEY (`id_chuche`) REFERENCES `chuches` (`id_chuche`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `pedido`
 --
 ALTER TABLE `pedido`
-  ADD CONSTRAINT `pedido_ibfk_1` FOREIGN KEY (`dni`) REFERENCES `cliente` (`dni`);
+  ADD CONSTRAINT `pedido_ibfk_1` FOREIGN KEY (`apodo`) REFERENCES `cliente` (`apodo`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

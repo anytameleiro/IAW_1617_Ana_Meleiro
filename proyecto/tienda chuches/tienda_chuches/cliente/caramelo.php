@@ -18,7 +18,7 @@
     //SESSION ALREADY CREATED
   
     include_once("menu.php");
-    echo "<h1>principal</h1>";
+    echo "<h1>caramelos</h1>";
   } else {
     session_destroy();
     header("Location: ../login.php");

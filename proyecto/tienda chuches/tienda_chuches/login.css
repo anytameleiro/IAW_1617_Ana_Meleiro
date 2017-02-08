@@ -7,6 +7,7 @@ background-image: url(img/Chuches.png);
 img{
   width: 100%;
 }
+
 .login1 {
   width: 360px;
   padding: 8% 0 0;
@@ -15,10 +16,9 @@ img{
 #login2 {
   font-family: cursive;
   font-size:14px;
-  font-weight:bolder;;
+  font-weight:bolder;
   position: relative;
   padding: 45px;
-  text-align: center;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
   border-radius:20px;
   background-image: url(img/Chuches1.png);
@@ -34,7 +34,7 @@ img{
   box-sizing: border-box;
   font-size: 15px;
 }
-.entrar{
+#entrar{
   font-family: cursive;
   width: 100%;
   border: 0;
@@ -43,7 +43,7 @@ img{
   background-color:#f16027;
   border-radius:20px;
 }
-.entrar:hover,.entrar:active,.entrar:focus {
+#entrar:hover,.entrar:active,.entrar:focus {
   background-color: #db5727;
 }
 .mensage {

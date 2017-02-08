@@ -10,15 +10,20 @@
           text-align:center;
           border-collapse: collapse;
       }
-      td,th{
-        font-size: 15px;
+      td{
+        font-size: 11px;
           padding: 5px;
         }
-
+      th{
+        font-size: 15px;
+          padding: 8px;
+      }
 
       img{
-          width: 42px;
-          height: 42px;
+          width: 55px;
+      }
+      #desc{
+        width: 250px;
       }
       </style>
 </head>
@@ -37,18 +42,15 @@
       <table>
        <tr>
          <th>Idchuche</th>
+         <th>Idcategoria</th>
          <th>Nombre</th>
          <th>Descripcion</th>
-         <th>Imagen1</th>
-         <th>Imagen2</th>
-         <th>Imagen3</th>
-         <th>Imagen4</th>
-         <th>Imagen5</th>
          <th>precio</th>
+         <th>Imagen_1</th>
+         <th>Imagen_2</th>
+         <th>Imagen_3</th>
+         <th>Imagen_4</th>
          <th>Modificar</th>
-         <!-- <th>Asignar_Empleados</th>
-
-        <th>Mostrar_Empleados</th> -->
          <th>Borrar</th>
        </tr>
 
@@ -64,26 +66,43 @@
       if ($result = $connection->query("SELECT * FROM chuches;")) {
       } else {
 
-            echo "Error: " . $sql . "<br>" . mysqli_error($connection);
+            echo "Error: ". $sql ."<br>". mysqli_error($connection);
       }
       //Introducir los datos en la tabla.
       while($obj = $result->fetch_object()) {
+
               echo "<tr>";
               echo "<td>".$obj->id_chuche."</td>";
+              echo "<td>".$obj->id_categoria."</td>";
               echo "<td>".$obj->nombre_chu."</td>";
-              echo "<td>".$obj->descripcion."</td>";
-              echo "<td>".$obj->img_chu."</td>";
-              echo "<td>".$obj->img1_chu."</td>";
-              echo "<td>".$obj->img2_chu."</td>";
-              echo "<td>".$obj->img3_chu."</td>";
-              echo "<td>".$obj->img4_chu."</td>";
+              echo "<td id='desc'>".$obj->descripcion."</td>";
               echo "<td>".$obj->precio." € </td>";
-
+              if (is_null($obj->img_chu)){
+                echo "<td><span>Sin Imagen</span></td>";
+              }else{
+                echo '<td><img src="../'.$obj->img_chu.'"/></td>';
+              }
+              if (is_null($obj->img1_chu)){
+                echo "<td><span>Sin Imagen</span></td>";
+              }else{
+                echo '<td><img src="../'.$obj->img1_chu.'"/></td>';
+              }
+              if (is_null($obj->img2_chu)){
+                echo "<td><span>Sin Imagen</span></td>";
+              }else{
+                echo '<td><img src="../'.$obj->img2_chu.'"/></td>';
+              }
+              if (is_null($obj->img3_chu)){
+                echo "<td><span>Sin Imagen</span></td>";
+              }else{
+                echo '<td><img src="../'.$obj->img3_chu.'"/></td>';
+              }
+              //modificar
               echo "<td><form id='form1' method='get'>
                     <a href='modificarchuche.php?id=$obj->id_chuche'/>
                     <img src='../img/modificar.png'/></a>
                     </form></td>";
-              //Borrar la reparacion.
+              //Borrar.
               echo "<td><form id='form0' method='get'>
                     <a href='borrarchuche.php?id=$obj->id_chuche'>
                     <img src='../img/papelera.png'/></a>
@@ -99,6 +118,9 @@
    </table>
 
     <?php
+    echo "<br><form action='../admin.php'>
+          <input type='submit' value='Atras' />
+          </form>";
   } else {
     session_destroy();
     header("Location: ../../login.php");

@@ -29,7 +29,7 @@
           $username = $_POST['user'];
           $password = $_POST['password'];
 
-          $consulta= "SELECT * FROM cliente WHERE nombre = '$username' AND contrasenia=md5('$password')";
+          $consulta= "SELECT * FROM cliente WHERE apodo = '$username' AND contrasenia=md5('$password')";
 
 
           //Test if the query was correct
@@ -38,7 +38,7 @@
 
               //No rows returned
               if ($result->num_rows===0) {
-                // echo "<h3 style='color:red;'> Usuario o contraseña incorrecta</h3>";
+
                 echo "<script>";
                 echo "alert ('Usuario o contraseña incorecta')";
                 echo "</script>";
@@ -62,12 +62,11 @@
   <form action="login.php" method="post">
     <div class="login1">
       <div id="login2">
-        <form class="register-form">
-          <p>Nombre: </p><p><input name="user" placeholder="nombre" required></p>
+          <p>Apodo: </p><p><input name="user" placeholder="nombre" required></p>
           <p>Contraseña: </p><p><input name="password" type="password" placeholder="contraseña" required></p>
-          <p><input class="entrar" type="submit" value="Entrar"></p>
-          <p class="mensage">¿No estas registrado? <a href="#">Registrate</a></p>
-        </form>
+          <p><input id="entrar" type="submit" value="Entrar"></p>
+          <p class="mensage">¿No estas registrado? <a href="registrar.php">Registrate</a></p>
+
       </div>
     </div>
   </form>

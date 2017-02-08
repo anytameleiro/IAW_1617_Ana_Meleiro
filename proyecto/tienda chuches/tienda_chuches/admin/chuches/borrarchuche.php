@@ -8,6 +8,10 @@
 
 <body>
     <?php
+    //Open the session
+    session_start();
+
+    if (isset($_SESSION["admin"])) {
     //Crear conexion.
     $connection = new mysqli("localhost", "root", "3546", "tienda_chuches");
     //Prueba conexion correcta.
@@ -15,26 +19,33 @@
           printf("Connection failed: %s\n", $connection->connect_error);
           exit();
     }
-    //Transformar $_GET en id_chuche.
-    foreach ($_GET as $key => $item)
-    //Comprobar.
-      if ($result = $connection->query("SELECT * FROM chuches where id_chuche=$item;")) {
 
-          //Borrar.
-            // if ($result1 = $connection->query("DELETE FROM contiene where id_chuche=$item;")) {
-                //Borrar.
-                // echo"borrado";
-                if ($result1 = $connection->query("DELETE FROM chuches where id_chuche=$item;")) {
-                    echo "<h1>chuche $item ha sido borrada.</h1><br>";
-                }
-            // }
-        }else{
-              mysqli_error($connection);
-            }
-     //Volver a la página principal.
-      echo "<br><form action='admin.php'>
+       //Transformar $_GET en id_chuche.
+       foreach ($_GET as $key => $item)
+       //Comprobar.
+         if ($result = $connection->query("SELECT * FROM chuches where id_chuche=$item;")) {
+
+             //Borrar.
+               if ($result1 = $connection->query("DELETE FROM contiene where id_chuche=$item;")) {
+                   //Borrar.
+                   if ($result1 = $connection->query("DELETE FROM chuches where id_chuche=$item;")) {
+                       echo "<h1>chuche $item ha sido borrada.</h1><br>";
+                   }
+               }
+           }else{
+                 mysqli_error($connection);
+               }
+
+    
+
+     //Volver atras.
+      echo "<br><form action='chuches.php'>
             <input type='submit' value='Atras' />
             </form>";
+} else {
+        session_destroy();
+        header("Location: ../../login.php");
+    }
      ?>
 
 
