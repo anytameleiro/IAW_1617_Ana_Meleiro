@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 08-02-2017 a las 12:20:45
+-- Tiempo de generación: 14-02-2017 a las 22:01:15
 -- Versión del servidor: 5.7.17-0ubuntu0.16.04.1
 -- Versión de PHP: 7.0.15-1+deb.sury.org~xenial+1
 
@@ -28,23 +28,22 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `categoria` (
   `id_categoria` int(10) NOT NULL,
-  `nombre_cat` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
-  `img_cat` varchar(150) CHARACTER SET latin1 NOT NULL
+  `nombre_cat` varchar(50) CHARACTER SET utf8 NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `categoria`
 --
 
-INSERT INTO `categoria` (`id_categoria`, `nombre_cat`, `img_cat`) VALUES
-(1, 'Caramelos goma', 'http://recetas.cuidadoinfantil.net/files/2012/10/Receta-de-caramelos-de-goma-caseros-e1349678078285.jpg'),
-(2, 'Caramelos', ''),
-(3, 'Nubes', ''),
-(4, 'Pica picas', ''),
-(5, 'Regaliz', ''),
-(6, 'Chicles', ''),
-(7, 'Gelatinas', ''),
-(8, 'Otros', '');
+INSERT INTO `categoria` (`id_categoria`, `nombre_cat`) VALUES
+(1, 'Caramelos goma'),
+(2, 'Caramelos'),
+(3, 'Nubes'),
+(4, 'Pica picas'),
+(5, 'Regaliz'),
+(6, 'Chicles'),
+(7, 'Gelatinas'),
+(8, 'Otros');
 
 -- --------------------------------------------------------
 
@@ -58,9 +57,6 @@ CREATE TABLE `chuches` (
   `nombre_chu` varchar(50) NOT NULL,
   `descripcion` varchar(500) DEFAULT NULL,
   `img_chu` varchar(150) CHARACTER SET latin1 DEFAULT NULL,
-  `img1_chu` varchar(150) DEFAULT NULL,
-  `img2_chu` varchar(150) DEFAULT NULL,
-  `img3_chu` varchar(150) DEFAULT NULL,
   `precio` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -68,15 +64,17 @@ CREATE TABLE `chuches` (
 -- Volcado de datos para la tabla `chuches`
 --
 
-INSERT INTO `chuches` (`id_chuche`, `id_categoria`, `nombre_chu`, `descripcion`, `img_chu`, `img1_chu`, `img2_chu`, `img3_chu`, `precio`) VALUES
-(100, 1, 'BOLSITAS FINI FUN SURTIDO', 'SURTIDO 360 GRS 18 BOLSITAS APROX', '../imgchu/bolsitafini.jpg', NULL, NULL, NULL, 2.71),
-(101, 2, 'CARAMELO ACIDO MANZANA', 'CARAMELO ACIDO MANZANA EL AVION\r\nBOLSA 1 KG (300 CARAMELOS APROX).', '../imgchu/acido-manzana-el-avion.jpg', '../imgchu/acido-manzana.jpg', NULL, NULL, 6.8),
-(102, 3, 'CHOCO JUMBOS', 'NUBE GIGANTE CON CUBIERTA CHOCOLATE\r\nESTUCHE 24 NUBES FINI CUBIERTA CHOCOLATE', NULL, NULL, NULL, NULL, 7.84),
-(103, 4, 'VARITAS MAGICAS LATA', 'LATA CON 150 PAJITAS PICA', NULL, NULL, NULL, NULL, 12.63),
-(104, 5, 'REGALIZ GATOS XXL', 'ESTUCHE 40 UNIDADES', NULL, NULL, NULL, NULL, 6.46),
-(105, 6, 'CHICLE DUBBLE CRY BABY', 'ESTUCHE 200 BOLAS CHICLE SUPER ACIDAS', NULL, NULL, NULL, NULL, 7.59),
-(106, 7, 'GELATINA FRESA TARRINAS ZAMBA', 'TARRO 48 TARRINAS +CUCHARAS\r\n', NULL, NULL, NULL, NULL, 8.58),
-(107, 8, 'PRINGLES TORTILLA ORIGINAL', 'BOTE 160 GRAMOS PRINGLES MAIZ', NULL, NULL, NULL, NULL, 2.6);
+INSERT INTO `chuches` (`id_chuche`, `id_categoria`, `nombre_chu`, `descripcion`, `img_chu`, `precio`) VALUES
+(100, 1, 'BOLSITAS FINI FUN SURTIDO', 'SURTIDO 360 GRS 18 BOLSITAS APROX', '../../imgchu/bolsitafini.jpg', 2.72),
+(101, 2, 'CARAMELO ACIDO MANZANA', 'CARAMELO ACIDO MANZANA EL AVIONBOLSA 1 KG (300 CARAMELOS APROX).', '../../imgchu/acido-manzana-el-avion.jpg', 6.8),
+(102, 3, 'CHOCO JUMBOS', 'NUBE GIGANTE CON CUBIERTA CHOCOLATE\r\nESTUCHE 24 NUBES FINI CUBIERTA CHOCOLATE', NULL, 7.84),
+(103, 4, 'VARITAS MAGICAS LATA', 'LATA CON 150 PAJITAS PICA', NULL, 12.63),
+(104, 5, 'REGALIZ GATOS XXL', 'ESTUCHE 40 UNIDADES', NULL, 6.46),
+(105, 6, 'CHICLE DUBBLE CRY BABY', 'ESTUCHE 200 BOLAS CHICLE SUPER ACIDAS', NULL, 7.59),
+(106, 7, 'GELATINA FRESA TARRINAS ZAMBA', 'TARRO 48 TARRINAS +CUCHARAS\r\n', NULL, 8.58),
+(107, 8, 'PRINGLES TORTILLA ORIGINAL', 'BOTE 160 GRAMOS PRINGLES MAIZ', NULL, 2.6),
+(108, 1, 'CHUCHE', 'CHUCHE NUEVA', '', 2.7),
+(109, 2, 'sro', 'tuk,', '../../imgchu/727501c81.jpg', 3);
 
 -- --------------------------------------------------------
 
@@ -166,7 +164,8 @@ ALTER TABLE `chuches`
 -- Indices de la tabla `cliente`
 --
 ALTER TABLE `cliente`
-  ADD PRIMARY KEY (`apodo`);
+  ADD PRIMARY KEY (`apodo`),
+  ADD UNIQUE KEY `apodo` (`apodo`);
 
 --
 -- Indices de la tabla `contiene`

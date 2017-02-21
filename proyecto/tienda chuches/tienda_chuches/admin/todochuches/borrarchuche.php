@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Borrar chuche</title>
+    <title></title>
 </head>
 
 <body>
@@ -42,7 +42,7 @@
 
 
      //Volver atras.
-      echo "<br><a href='chuches.php?idcat=$obj->id_categoria'>Atras</a>";
+      echo "<br><a href='cliente.php'>Atras</a>";
 } else {
         session_destroy();
         header("Location: ../../login.php");

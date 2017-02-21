@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" type="text/css" href="menu.css">
+  
 <title></title>
 </head>
 
@@ -22,33 +22,37 @@ if ($connection->connect_errno) {
     printf("Connection failed: %s\n", $connection->connect_error);
     exit();
 }
+$user=$_POST['user'];
+?>
+<div id="cuerpo">
+<p><a id="salir" href='../../salir.php' >Cerrar sesion</a></p>
 
+<br><a id="perfil" href="perfil.php?apodo=$user">mi perfil</a>
+<h1>TODO CHUCHES</h1>
+</div>
+  <nav class="princ">
+  <ul id="first_level">
+    <li class="menup"><a href="principal.php" data-title='Principal'>Principal</a></li>
+<?php
 //MAKING A SELECT QUERY
 //Password coded with md5 at the database. Look for better options
 
 $consulta= "SELECT * FROM categoria";
 if ($result = $connection->query($consulta)) {
-  ?>
-  <p><a href=''>cerrar sesion</a></p>
-  <a href=''>mi perfil</a>
-  <h1>TODO CHUCHES</h1>
-  <div id="container">
-    <ul id="first_level">
-      <li><a href="principal.php">Principal</a></li>
-      <?php
-      $link=array("car_goma.php","caramelo.php");
-      $i=0;
+
+
       while($obj = $result->fetch_object()) {
           //PRINTING EACH ROW
-          $a=$i++;
-        echo "<li><a href='$link[$a]'>".$obj->nombre_cat."</a></li>";
+
+        echo "<li class='menu'><a href='categoria1.php?idcat=$obj->id_categoria' data-title='$obj->nombre_cat'>".$obj->nombre_cat."</a></li>";
 
         }
 
 
       ?>
     </ul>
-  </div>
+    </nav>
+
   <?php
 
       $result->close();

@@ -17,7 +17,10 @@
 
     ?>
     <h1>Bienvenido administrador</h1>
-    <a href="chuches/chuches.php">tabla chuches</a>
+    <a href="../salir.php" >Cerrar sesion</a>
+    <a href="todochuches/chuches.php">Todas las chuches</a>
+    <a href="categorias/categoria.php">Tabla categoria</a>
+    <a href="tablacliente/cliente.php">Tabla cliente</a>
     <?php
     } else {
     session_destroy();

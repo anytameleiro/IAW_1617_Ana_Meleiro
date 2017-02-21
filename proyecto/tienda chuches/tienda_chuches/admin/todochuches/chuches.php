@@ -4,14 +4,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="../estilotabla.css">
-  <title>Tabla chuches</title>
+  <title>Todas las chuches</title>
   <style>
-
 
       img{
           width: 55px;
       }
-
       </style>
 </head>
 
@@ -25,24 +23,25 @@
 
     ?>
     <a id="salir" href='../../salir.php' >Cerrar sesion</a>
-    <h1>Tabla chuches</h1>
-    <div class="titulo">
-        <table >
+    <h1>Todas las chuches</h1>
+
+<div class="titulo">
+      <table>
        <tr>
+         <th>Idchuche</th>
+         <th>Idcategoria</th>
          <th>Nombre</th>
          <th>Descripcion</th>
-         <th>Precio</th>
+         <th>precio</th>
          <th>Imagen</th>
          <th>Modificar</th>
          <th>Borrar</th>
        </tr>
-
      </table>
-    </div>
-    <div class="contenido">
-    <table>
+     </div>
+     <div class="contenido">
+     <table>
       <tbody>
-
     <?php
      //Crear conexion.
      $connection = new mysqli("localhost", "root", "3546", "tienda_chuches");
@@ -51,10 +50,8 @@
           printf("Connection failed: %s\n", $connection->connect_error);
           exit();
       }
-      $consulta="SELECT * from chuches inner join
-       categoria on categoria.id_categoria=chuches.id_categoria where categoria.id_categoria=".$_GET['idcat'];
       //Consulta.
-      if ($result = $connection->query($consulta)) {
+      if ($result = $connection->query("SELECT * FROM chuches;")) {
       } else {
 
             echo "Error: ". $sql ."<br>". mysqli_error($connection);
@@ -63,6 +60,8 @@
       while($obj = $result->fetch_object()) {
 
               echo "<tr>";
+              echo "<td>".$obj->id_chuche."</td>";
+              echo "<td>".$obj->id_categoria."</td>";
               echo "<td>".$obj->nombre_chu."</td>";
               echo "<td>".$obj->descripcion."</td>";
               echo "<td>".$obj->precio." € </td>";
@@ -81,7 +80,7 @@
               echo "<td>
                     <a href='borrarchuche.php?id=$obj->id_chuche'>
                     <img src='../img/papelera.png'/></a>
-                  </td>";
+                    </td>";
               echo "</tr>";
          }
 
@@ -97,11 +96,8 @@
 
     <?php
 
-    $categoria = $_GET['idcat'];
+    echo "<br><a class='atras' href='../admin.php'>Atras</a>";
 
-    echo "<br><a href='añadirchuche.php?idcat=$categoria'><input  id='entrar' type='submit' value='+ Añadir' /></a><br>";
-
-    echo "<br><a class='atras' href='../categorias/categoria.php'>Atras</a>";
   } else {
     session_destroy();
     header("Location: ../../login.php");

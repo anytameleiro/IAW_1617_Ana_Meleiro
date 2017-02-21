@@ -24,15 +24,15 @@
        //Transformar $_GET en id_chuche.
        foreach ($_GET as $key => $item)
        //Comprobar.
-         if ($result = $connection->query("SELECT * FROM chuches where id_chuche=$item;")) {
-           $obj = $result->fetch_object();
-           $image = $obj->img_chu;
+         if ($result = $connection->query("SELECT * FROM cliente where apodo=$item;")) {
+
              //Borrar.
-               if ($result1 = $connection->query("DELETE FROM contiene where id_chuche=$item;")) {
+               if ($result1 = $connection->query("DELETE FROM pedido where apodo=$item;")) {
+
                    //Borrar.
-                   if ($result1 = $connection->query("DELETE FROM chuches where id_chuche=$item;")) {
-                      unlink("$image");
-                       echo "<h1>chuche $item ha sido borrada.</h1><br>";
+                   if ($result1 = $connection->query("DELETE FROM cliente where apodo=$item;")) {
+
+                       echo "<h1>El cliente $item ha sido borrada.</h1><br>";
                    }
                }
            }else{
@@ -42,7 +42,7 @@
 
 
      //Volver atras.
-      echo "<br><a href='chuches.php?idcat=$obj->id_categoria'>Atras</a>";
+      echo "<br><a href='cliente.php'>Atras</a>";
 } else {
         session_destroy();
         header("Location: ../../login.php");

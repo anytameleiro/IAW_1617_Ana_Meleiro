@@ -19,13 +19,13 @@
 
                 <h2><u>Registrar</u></h2>
 
-                <span>Apodo:</span><input type="text" name="apodo" placeholder="apodo" required><br>
-                <span>Nombre:</span><input type="text" name="nombre" placeholder="nombre" required><br>
-                <span>Apellidos:</span><input type="text" name="apellidos" placeholder="apellidos" ><br>
-                <span>Contraseña:</span><input type="password" name="contrasenia" placeholder="contraseña" required><br>
-                <span>Repita la contraseña:</span><input type="password" name="cont2" placeholder="contraseña" required><br>
-                <span>Email:</span><input type="email" name="email" placeholder="email" ><br>
-                <span>Direccion:</span><input type="text" name="direccion" placeholder="direccion" required><br>
+                <span>Apodo:</span><input type="text" name="apodo" placeholder="apodo" maxlength='25'required><br>
+                <span>Nombre:</span><input type="text" name="nombre" placeholder="nombre" maxlength='50' required><br>
+                <span>Apellidos:</span><input type="text" name="apellidos" placeholder="apellidos" maxlength='50' ><br>
+                <span>Contraseña:</span><input type="password" name="contrasenia" placeholder="contraseña" maxlength='64' required><br>
+                <span>Repita la contraseña:</span><input type="password" name="cont2" placeholder="contraseña"maxlength='64' required><br>
+                <span>Email:</span><input type="email" name="email" placeholder="email" maxlength='50' ><br>
+                <span>Direccion:</span><input type="text" name="direccion" placeholder="direccion" maxlength='50'required><br>
     	          <input id="entrar" type="submit" value="Enviar" name="send">
                 <p class="mensage"> <a href="login.php">Atras</a></p>
 
@@ -45,19 +45,28 @@
   ?>
 
   <?php
-  if (isset($_POST['send'])) {
+
+    $apodo=$_POST['apodo'];
     $nom=$_POST['nombre'];
     $ape=$_POST['apellidos'];
     $cont=$_POST['contrasenia'];
     $cont2=$_POST['cont2'];
-    $apodo=$_POST['apodo'];
     $email=$_POST['email'];
     $dir=$_POST['direccion'];
-      if ($cont==$cont2){
+
+
+    if ($cont==$cont2){
             $consulta= "INSERT INTO cliente VALUES('$nom','$ape','$dir','$apodo','$email',MD5('$cont'));";
             $result = $connection->query($consulta);
             if (!$result) {
-               echo "Query Error";
+              echo "<script>
+              alert ('Este apodo ya existe, escriba otro')
+              var pag='registrar.php'
+              function redireccionar2(){
+                location.href=pag;
+              }
+              setTimeout('redireccionar2()',5);
+              </script>";
             } else {
               echo "<script>;
                 alert ('Usuario registrado, bienvenid@ $nom');
@@ -65,19 +74,23 @@
                 function redireccionar(){
                   location.href=pag;
                 }
-                setTimeout('redireccionar()',100);
+                setTimeout('redireccionar()',5);
                 </script>";
 
             }
 
 
-        }else {
-          echo "<script>";
-          echo "alert ('Las contraseñas no coinciden')";
-          echo "</script>";
-        }
-}
+      }else {
+          echo "<script>
+          alert ('Las contraseñas no coinciden')
+          var pag='registrar.php'
+          function redireccionar1(){
+            location.href=pag;
+          }
+          setTimeout('redireccionar1()',5);
+          </script>";
 
+      }
    ?>
 
 <?php endif ?>

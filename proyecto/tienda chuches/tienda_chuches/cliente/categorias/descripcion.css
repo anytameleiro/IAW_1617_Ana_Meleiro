@@ -1,0 +1,28 @@
+
+body {
+
+	background-attachment: fixed;
+	background-image: url(../fondoimg/fondo.jpg);
+}
+img {
+	width: 300px;
+	border-radius: 10px;
+}
+.login1 {
+
+  padding: 8% 0 0;
+  margin: auto;
+
+}
+#login2 {
+
+  border-radius:20px;
+  background-image: url(../fondoimg/hola.jpg);
+  background-attachment: fixed;
+	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+	clear:both;
+ 	float:left;
+ 	overflow:hidden;
+  width: 1250px;
+ 	margin-left: 50px;
+}

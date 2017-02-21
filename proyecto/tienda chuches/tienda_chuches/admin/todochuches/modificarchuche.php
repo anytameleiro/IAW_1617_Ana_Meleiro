@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modificar chuche</title>
+    <title>modificar chuche</title>
     <link rel="stylesheet" type="text/css" href=" ">
     </head>
     <body>
@@ -14,7 +14,6 @@
 
       if (isset($_SESSION["admin"])) {
       $id = $_GET['id'];
-
       $connection = new mysqli('localhost', 'root', '3546', 'tienda_chuches');
 
       if ($connection->connect_errno) {
@@ -41,8 +40,7 @@
 
         echo "<button name='edit'>Modificar</button>";
         echo"</form>";
-        echo "<br><a href='chuches.php?idcat=$obj->id_categoria'>Atras</a>";
-
+        echo "<br><a href='chuches.php'>Atras</a>";
 
       } else {
 
@@ -73,13 +71,7 @@
         WHERE  `chuches`.`id_chuche` =$id;";
 
         if ($result = $connection->query($consulta)){
-          if ($result = $connection->query("SELECT * from chuches
-            where id_chuche = $id;")) {
-            $obj = $result->fetch_object();
-
-          header ("Location: chuches.php?idcat=".$obj->id_categoria);
-        }
-
+          header ("Location: chuches.php");
         } else {
               echo "Error: " . $result . "<br>" . mysqli_error($connection);
           }

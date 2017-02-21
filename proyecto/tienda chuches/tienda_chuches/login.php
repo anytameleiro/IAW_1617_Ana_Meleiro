@@ -45,13 +45,14 @@
               }
               else if ($_POST["user"]==='admin') {
                 $_SESSION["admin"]=$_POST["user"];
+                $_SESSION["language"]="es";
                 header("Location: admin/admin.php");
               }
               else {
                 //VALID LOGIN. SETTING SESSION VARS
                 $_SESSION["user"]=$_POST["user"];
                 $_SESSION["language"]="es";
-                header("Location: cliente/principal.php");
+                header("Location: cliente/categorias/principal.php");
               }
 
           } else {
@@ -62,8 +63,8 @@
   <form action="login.php" method="post">
     <div class="login1">
       <div id="login2">
-          <p>Apodo: </p><p><input name="user" placeholder="nombre" required></p>
-          <p>Contraseña: </p><p><input name="password" type="password" placeholder="contraseña" required></p>
+          <p>Apodo: </p><p><input name="user" placeholder="nombre" maxlength='25'required></p>
+          <p>Contraseña: </p><p><input name="password" type="password" placeholder="contraseña" maxlength='64' required></p>
           <p><input id="entrar" type="submit" value="Entrar"></p>
           <p class="mensage">¿No estas registrado? <a href="registrar.php">Registrate</a></p>
 

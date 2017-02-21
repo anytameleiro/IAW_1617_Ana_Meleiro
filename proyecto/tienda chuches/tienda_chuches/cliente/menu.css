@@ -1,23 +1,70 @@
 
-#container {
-  width: 100%;
-  margin: 10px auto;
-}
+#cuerpo {
 
-li {
+   background-color: rgba(255,255,255,0.8);
+    width: 1250px;
+    margin-left: 50px;
+    border-radius: 20px;
+    text-align: center;
+}
+.princ {
+    float: left;
+    transform-style: preserve-3d;
+    width:  1334px;
+
+}
+.princ ul {
   list-style: none;
-  padding: 1%;
-  box-sizing: border-box;
-  font-weight: bold;
-  font-size: 95%;
-
+}
+.princ li {
+    display: inline-block;
+    margin-right: -.30em;
+}
+.princ a {
+    font-family: cursive;
+    background-color: #f16027;
+    color: #ffffff;
+    display: block;
+    font: bold 1em/3 cursive;
+    padding: 0 1.5em;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    transition: .6s;
+    transform-style: preserve-3d;
+    width: 6em;
+}
+.princ a:after {
+    background-color: #db5727;
+    color: inherit;
+    content: attr(data-title);
+    height: 100%;
+    left: 0;
+    line-height: 3;
+    position: absolute;
+    top: 100%;
+    transform: rotateX(-90deg);
+    transform-origin: 0 0;
+    width: 100%;
 }
 
+.princ li:nth-child(-n+2) a:before {
+    transform: rotateY(90deg) translateZ(3em);
+}
+.princ li:nth-child(n+3) a:before {
+    left: 0;
+    transform: rotateY(90deg);
+}
+.princ li:hover a {
+    transform: rotateX(90deg) translateY(-1.5em) translateZ(1.5em);
+}
+#salir{
+  float: right;
+}
+#perfil{
+  float: right;
+}
+a{
 
-#first_level > li {
-  float: left;
-  display: inline;
-  width:11%;
-  background-color: lightgreen;
-  position: relative;
+  text-decoration: none;
 }
