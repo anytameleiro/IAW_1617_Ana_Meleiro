@@ -23,6 +23,7 @@ body {
 	border-radius: 5px;
 	width: 250px;
 	margin: 0 20px 20px 0;
+	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.4), 0 5px 5px 0 rgba(0, 0, 0, 0.44);
 
 }
 
@@ -56,7 +57,7 @@ body {
 #login2 {
 
   border-radius:20px;
-  background-image: url(../fondoimg/hola.jpg);
+  background: rgba(0, 0, 0, 0.3);
   background-attachment: fixed;
 	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 	clear:both;

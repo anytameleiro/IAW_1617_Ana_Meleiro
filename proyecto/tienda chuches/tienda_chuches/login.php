@@ -51,8 +51,11 @@
               else {
                 //VALID LOGIN. SETTING SESSION VARS
                 $_SESSION["user"]=$_POST["user"];
+
                 $_SESSION["language"]="es";
                 header("Location: cliente/categorias/principal.php");
+                
+                // header("Location: cliente/categorias/principal.php?apodo=$username");
               }
 
           } else {

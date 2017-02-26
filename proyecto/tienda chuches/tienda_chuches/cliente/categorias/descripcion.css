@@ -14,10 +14,17 @@ img {
   margin: auto;
 
 }
+table{
+	margin: 20px;
+}
+
+td{
+	width: 500px;
+}
 #login2 {
 
   border-radius:20px;
-  background-image: url(../fondoimg/hola.jpg);
+  background: rgba(0, 0, 0, 0.3);
   background-attachment: fixed;
 	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 	clear:both;
@@ -25,4 +32,22 @@ img {
  	overflow:hidden;
   width: 1250px;
  	margin-left: 50px;
+
+}
+input[type="number"] {
+   width:50px;
+}
+#desc{
+
+	padding: 25px;
+	width: 450px;
+	height: 150px;
+		background-color: rgba(255,255,255,0.9);
+	border-radius: 20px;
+}
+#atras{
+	background-color: #425470;
+	padding: 10px;
+	border-radius: 20px;
+	color:white;
 }

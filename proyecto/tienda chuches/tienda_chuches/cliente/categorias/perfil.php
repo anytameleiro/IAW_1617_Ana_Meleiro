@@ -29,10 +29,11 @@
         printf("Connection failed: %s\n", $connection->connect_error);
         exit();
     }
+$user=$_SESSION["user"];
 
     //MAKING A SELECT QUERY
 
-    $consulta="SELECT * from clientes where apodo=".$_POST["user"];
+    $consulta="SELECT * from cliente where apodo='$user';";
 
     if ($result = $connection->query($consulta)) {
     }else {
@@ -41,19 +42,22 @@
     }
     $obj = $result->fetch_object();
 
-    echo "<h2>".$obj->nombre."</h2><br>";
-    echo "<h2>".$obj->apodo."</h2><br>";
-    echo "<h2>".$obj->direccion."</h2><br>";
+    echo "<strong>Apodo: </strong>".$obj->apodo."<br><br>";
+    echo "<strong>Nombre: </strong>".$obj->nombre."<br><br>";
+    echo "<strong>Apellidos: </strong>".$obj->apellidos."<br><br>";
+    echo "<strong>Direccion: </strong>".$obj->direccion."<br><br>";
+    echo "<strong>Email: </strong>".$obj->email."<br><br>";
 
   unset($obj);
-
-
+echo"<a href='modi.php?apo=$user'>Modificar perfil</a><br>";
+echo"<a href='contrasenia.php?apo=$user'>Cambiar contraseña</a><br>";
+echo"<a href='pedidos.php'>Pedidos</a>";
 
 
 
   } else {
     session_destroy();
-    header("Location: ../login.php");
+    header("Location: ../../login.php");
   }
 
 

@@ -1,11 +1,12 @@
 
 #cuerpo {
 
-   background-color: rgba(255,255,255,0.8);
+   background-color: rgba(48, 80, 130, 0.4);
     width: 1250px;
     margin-left: 50px;
     border-radius: 20px;
     text-align: center;
+
 }
 .princ {
     float: left;
@@ -22,7 +23,7 @@
 }
 .princ a {
     font-family: cursive;
-    background-color: #f16027;
+    background-color: #6880a6;
     color: #ffffff;
     display: block;
     font: bold 1em/3 cursive;
@@ -35,7 +36,7 @@
     width: 6em;
 }
 .princ a:after {
-    background-color: #db5727;
+    background-color: #425470;
     color: inherit;
     content: attr(data-title);
     height: 100%;
@@ -65,6 +66,6 @@
   float: right;
 }
 a{
-
+color:black;
   text-decoration: none;
 }

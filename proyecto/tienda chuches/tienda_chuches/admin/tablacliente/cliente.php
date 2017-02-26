@@ -54,7 +54,7 @@
           exit();
       }
       //Consulta.
-      if ($result = $connection->query("SELECT * FROM cliente;")) {
+      if ($result = $connection->query("SELECT * FROM cliente ORDER BY nombre;")) {
       } else {
 
             echo "Error: ". $sql ."<br>". mysqli_error($connection);

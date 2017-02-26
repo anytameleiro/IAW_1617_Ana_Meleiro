@@ -22,13 +22,26 @@
   session_start();
 
   if (isset($_SESSION["admin"])) {
-
+$categoria = $_GET['idcat'];
     ?>
     <a id="salir" href='../../salir.php' >Cerrar sesion</a>
     <h1>Tabla chuches</h1>
+    <?php
+    //Crear conexion.
+    $connection = new mysqli("localhost", "root", "3546", "tienda_chuches");
+    //Prueba conexion correcta.
+    if ($connection->connect_errno) {
+         printf("Connection failed: %s\n", $connection->connect_error);
+         exit();
+     }
+     $consulta="SELECT * from chuches inner join
+      categoria on categoria.id_categoria=chuches.id_categoria where categoria.id_categoria='$categoria' ORDER BY chuches.nombre_chu;";
+
+     ?>
     <div class="titulo">
         <table >
        <tr>
+         <th>Categoria</th>
          <th>Nombre</th>
          <th>Descripcion</th>
          <th>Precio</th>
@@ -44,25 +57,20 @@
       <tbody>
 
     <?php
-     //Crear conexion.
-     $connection = new mysqli("localhost", "root", "3546", "tienda_chuches");
-     //Prueba conexion correcta.
-     if ($connection->connect_errno) {
-          printf("Connection failed: %s\n", $connection->connect_error);
-          exit();
-      }
-      $consulta="SELECT * from chuches inner join
-       categoria on categoria.id_categoria=chuches.id_categoria where categoria.id_categoria=".$_GET['idcat'];
+
       //Consulta.
       if ($result = $connection->query($consulta)) {
       } else {
 
             echo "Error: ". $sql ."<br>". mysqli_error($connection);
       }
+
+
       //Introducir los datos en la tabla.
       while($obj = $result->fetch_object()) {
 
               echo "<tr>";
+              echo "<td>".$obj->nombre_cat."</td>";
               echo "<td>".$obj->nombre_chu."</td>";
               echo "<td>".$obj->descripcion."</td>";
               echo "<td>".$obj->precio." € </td>";
@@ -97,7 +105,7 @@
 
     <?php
 
-    $categoria = $_GET['idcat'];
+
 
     echo "<br><a href='añadirchuche.php?idcat=$categoria'><input  id='entrar' type='submit' value='+ Añadir' /></a><br>";
 

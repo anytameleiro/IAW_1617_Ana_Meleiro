@@ -28,8 +28,7 @@
 <div class="titulo">
       <table>
        <tr>
-         <th>Idchuche</th>
-         <th>Idcategoria</th>
+         <th>Categoria</th>
          <th>Nombre</th>
          <th>Descripcion</th>
          <th>precio</th>
@@ -51,7 +50,8 @@
           exit();
       }
       //Consulta.
-      if ($result = $connection->query("SELECT * FROM chuches;")) {
+      if ($result = $connection->query("SELECT * from chuches inner join
+     categoria on categoria.id_categoria=chuches.id_categoria ORDER BY chuches.nombre_chu;")) {
       } else {
 
             echo "Error: ". $sql ."<br>". mysqli_error($connection);
@@ -60,8 +60,7 @@
       while($obj = $result->fetch_object()) {
 
               echo "<tr>";
-              echo "<td>".$obj->id_chuche."</td>";
-              echo "<td>".$obj->id_categoria."</td>";
+              echo "<td>".$obj->nombre_cat."</td>";
               echo "<td>".$obj->nombre_chu."</td>";
               echo "<td>".$obj->descripcion."</td>";
               echo "<td>".$obj->precio." € </td>";
@@ -84,10 +83,7 @@
               echo "</tr>";
          }
 
-          //Cerrar la conexion.
-          $result->close();
-          unset($obj);
-          unset($connection);
+
           ?>
 
         </tbody>
@@ -96,7 +92,14 @@
 
     <?php
 
+    echo "<br><a href='añadirchuche.php'><input  id='entrar' type='submit' value='+ Añadir' /></a><br>";
+
     echo "<br><a class='atras' href='../admin.php'>Atras</a>";
+
+    //Cerrar la conexion.
+    $result->close();
+    unset($obj);
+    unset($connection);
 
   } else {
     session_destroy();

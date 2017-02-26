@@ -42,7 +42,7 @@
 
 
      //Volver atras.
-      echo "<br><a href='cliente.php'>Atras</a>";
+      echo "<br><a href='chuches.php'>Atras</a>";
 } else {
         session_destroy();
         header("Location: ../../login.php");

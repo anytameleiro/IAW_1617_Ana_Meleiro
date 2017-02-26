@@ -5,16 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="../estilotabla.css">
   <title>Tabla categoria</title>
-  <style>
 
-
-      img{
-          width: 55px;
-      }
-
-      </style>
 </head>
+<style>
 
+
+    img{
+        width: 55px;
+    }
+
+    </style>
 <body>
 <?php
 
@@ -50,10 +50,7 @@
       }
       //Consulta.
       if ($result = $connection->query("SELECT * FROM categoria;")) {
-      } else {
 
-            echo "Error: ". $sql ."<br>". mysqli_error($connection);
-      }
       //Introducir los datos en la tabla.
       while($obj = $result->fetch_object()) {
 
@@ -73,6 +70,10 @@
           $result->close();
           unset($obj);
           unset($connection);
+        } else {
+
+              echo "Error: ". $sql ."<br>". mysqli_error($connection);
+        }
           ?>
 
         </tbody>

@@ -23,14 +23,19 @@
 
        //Transformar $_GET en id_chuche.
        foreach ($_GET as $key => $item)
-       //Comprobar.
-         if ($result = $connection->query("SELECT * FROM cliente where apodo=$item;")) {
 
-             //Borrar.
-               if ($result1 = $connection->query("DELETE FROM pedido where apodo=$item;")) {
+       //Comprobar.
+         if ($result = $connection->query("SELECT * FROM cliente where apodo='$item';")) {
+
+
+           if($item =='admin'){
+             echo"<h1>No se puede borrar el administrador</h1>";
+
+           }else
+           if ($result1 = $connection->query("DELETE FROM pedido where apodo='$item';")) {    //Borrar.
 
                    //Borrar.
-                   if ($result1 = $connection->query("DELETE FROM cliente where apodo=$item;")) {
+                   if ($result2 = $connection->query("DELETE FROM cliente where apodo='$item';")) {
 
                        echo "<h1>El cliente $item ha sido borrada.</h1><br>";
                    }

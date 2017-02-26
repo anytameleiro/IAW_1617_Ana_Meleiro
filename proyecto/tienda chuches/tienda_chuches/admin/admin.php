@@ -21,6 +21,7 @@
     <a href="todochuches/chuches.php">Todas las chuches</a>
     <a href="categorias/categoria.php">Tabla categoria</a>
     <a href="tablacliente/cliente.php">Tabla cliente</a>
+    <a href="cambia.php">Cambiar contraseña</a>
     <?php
     } else {
     session_destroy();

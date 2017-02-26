@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modificar categoria</title>
-    <link rel="stylesheet" type="text/css" href=" ">
+    <title>modificar categoria</title>
+      <link rel="stylesheet" type="text/css" href="../formulario.css">
     </head>
     <body>
 
@@ -13,7 +13,7 @@
       session_start();
 
       if (isset($_SESSION["admin"])) {
-
+        echo "<h1>Modificar</h1>";
       $idcat = $_GET['idcat'];
       $connection = new mysqli('localhost', 'root', '3546', 'tienda_chuches');
 
@@ -26,11 +26,15 @@
 
         $obj = $result->fetch_object();
 
+        echo"<div id='h'>";
         echo "<form method='post'>";
-        echo "Id:".$obj->id_categoria ."<br><br>";
-        echo "Nombre: <input maxlength='10' name='nombre' value='$obj->nombre_cat' required/><br><br>";
+          echo"<div id='i'>";
+        echo "<span>Id:</span>".$obj->id_categoria ."<br><br>";
+        echo "<span>Nombre:</span><input maxlength='10' name='nombre' value='$obj->nombre_cat' required/><br><br>";
 
-        echo "<button name='edit'>Modificar</button>";
+        echo"</div>";
+                echo "<button name='edit'>Modificar</button>";
+                echo"</div>";
         echo"</form>";
         echo "<br><a href='categoria.php'>Atras</a>";
 

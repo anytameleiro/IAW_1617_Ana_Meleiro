@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 14-02-2017 a las 22:01:15
+-- Tiempo de generación: 26-02-2017 a las 18:17:31
 -- Versión del servidor: 5.7.17-0ubuntu0.16.04.1
 -- Versión de PHP: 7.0.15-1+deb.sury.org~xenial+1
 
@@ -36,7 +36,7 @@ CREATE TABLE `categoria` (
 --
 
 INSERT INTO `categoria` (`id_categoria`, `nombre_cat`) VALUES
-(1, 'Caramelos goma'),
+(1, 'Gomitas'),
 (2, 'Caramelos'),
 (3, 'Nubes'),
 (4, 'Pica picas'),
@@ -65,16 +65,19 @@ CREATE TABLE `chuches` (
 --
 
 INSERT INTO `chuches` (`id_chuche`, `id_categoria`, `nombre_chu`, `descripcion`, `img_chu`, `precio`) VALUES
-(100, 1, 'BOLSITAS FINI FUN SURTIDO', 'SURTIDO 360 GRS 18 BOLSITAS APROX', '../../imgchu/bolsitafini.jpg', 2.72),
-(101, 2, 'CARAMELO ACIDO MANZANA', 'CARAMELO ACIDO MANZANA EL AVIONBOLSA 1 KG (300 CARAMELOS APROX).', '../../imgchu/acido-manzana-el-avion.jpg', 6.8),
-(102, 3, 'CHOCO JUMBOS', 'NUBE GIGANTE CON CUBIERTA CHOCOLATE\r\nESTUCHE 24 NUBES FINI CUBIERTA CHOCOLATE', NULL, 7.84),
+(100, 5, 'BOLSITAS FINI FUN SURTIDO', 'SURTIDO 360 GRS 18 BOLSITAS APROX\r\n', '../../imgchu/bolsitafini.jpg', 1.5),
+(101, 2, 'CARAMELO ACIDO MANZANA', 'CARAMELO ACIDO MANZANA EL AVIONBOLSA 1 KG (300 CARAMELOS APROX).', '../../imgchu/acido-manzana-el-avion.jpg', 4.8),
+(102, 3, 'CHOCO JUMBOS', 'NUBE GIGANTE CON CUBIERTA CHOCOLATEESTUCHE 24 NUBES FINI CUBIERTA CHOCOLATE', NULL, 7.83),
 (103, 4, 'VARITAS MAGICAS LATA', 'LATA CON 150 PAJITAS PICA', NULL, 12.63),
 (104, 5, 'REGALIZ GATOS XXL', 'ESTUCHE 40 UNIDADES', NULL, 6.46),
 (105, 6, 'CHICLE DUBBLE CRY BABY', 'ESTUCHE 200 BOLAS CHICLE SUPER ACIDAS', NULL, 7.59),
 (106, 7, 'GELATINA FRESA TARRINAS ZAMBA', 'TARRO 48 TARRINAS +CUCHARAS\r\n', NULL, 8.58),
 (107, 8, 'PRINGLES TORTILLA ORIGINAL', 'BOTE 160 GRAMOS PRINGLES MAIZ', NULL, 2.6),
-(108, 1, 'CHUCHE', 'CHUCHE NUEVA', '', 2.7),
-(109, 2, 'sro', 'tuk,', '../../imgchu/727501c81.jpg', 3);
+(108, 1, 'CHUCHE2', 'CHUCHE NUEVA2', '', 2.7),
+(122, 2, 'bocaditos-nube-chocolate.jpg', 'sadadasdsad', '../../imgchu/bocaditos-nube-chocolate.jpg', 3),
+(124, 6, 'gbnhfhf', 'ghi..', '../../imgchu/descarga.jpg', 7),
+(126, 1, 'fw', 've', '../../imgchu/727501c81.jpg', 2),
+(127, 1, 'bwnt', 'wrbwbrrwb', '../../imgchu/captura de pantalla_2017-02-15_22-29-02.png', 8);
 
 -- --------------------------------------------------------
 
@@ -97,8 +100,7 @@ CREATE TABLE `cliente` (
 
 INSERT INTO `cliente` (`nombre`, `apellidos`, `direccion`, `apodo`, `email`, `contrasenia`) VALUES
 ('admin', NULL, NULL, 'admin', NULL, '81dc9bdb52d04dc20036dbd8313ed055'),
-('ana', 'meleiro sanchez', 'Sevilla', 'Ana', 'ana@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055'),
-('Carmen', 'Jimenez', 'calle san mario,Madrid', 'Carmen', 'carmen4516@correo.edu', '81dc9bdb52d04dc20036dbd8313ed055');
+('Carmen', 'Jimenez', 'calle san mario,Madrid', 'Carmen', 'carmen4516@corre.edu', '81dc9bdb52d04dc20036dbd8313ed055');
 
 -- --------------------------------------------------------
 
@@ -107,17 +109,10 @@ INSERT INTO `cliente` (`nombre`, `apellidos`, `direccion`, `apodo`, `email`, `co
 --
 
 CREATE TABLE `contiene` (
-  `id_pedido` int(10) NOT NULL,
+  `id_pedido` int(50) NOT NULL,
   `id_chuche` int(10) NOT NULL,
   `cantidad` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Volcado de datos para la tabla `contiene`
---
-
-INSERT INTO `contiene` (`id_pedido`, `id_chuche`, `cantidad`) VALUES
-(2, 101, 2);
 
 -- --------------------------------------------------------
 
@@ -126,18 +121,11 @@ INSERT INTO `contiene` (`id_pedido`, `id_chuche`, `cantidad`) VALUES
 --
 
 CREATE TABLE `pedido` (
-  `id_pedido` int(10) NOT NULL,
+  `id_pedido` int(50) NOT NULL,
   `apodo` varchar(50) NOT NULL,
   `fecha` date NOT NULL,
   `precio_total` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Volcado de datos para la tabla `pedido`
---
-
-INSERT INTO `pedido` (`id_pedido`, `apodo`, `fecha`, `precio_total`) VALUES
-(2, 'Carmen', '2017-01-27', '13.60');
 
 --
 -- Índices para tablas volcadas
@@ -172,6 +160,7 @@ ALTER TABLE `cliente`
 --
 ALTER TABLE `contiene`
   ADD PRIMARY KEY (`id_pedido`,`id_chuche`),
+  ADD KEY `id_pedido` (`id_pedido`),
   ADD KEY `id_chuche` (`id_chuche`);
 
 --
@@ -179,8 +168,28 @@ ALTER TABLE `contiene`
 --
 ALTER TABLE `pedido`
   ADD PRIMARY KEY (`id_pedido`,`apodo`),
-  ADD KEY `dni` (`apodo`);
+  ADD KEY `dni` (`apodo`),
+  ADD KEY `id_pedido` (`id_pedido`);
 
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `chuches`
+--
+ALTER TABLE `chuches`
+  MODIFY `id_chuche` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=129;
+--
+-- AUTO_INCREMENT de la tabla `contiene`
+--
+ALTER TABLE `contiene`
+  MODIFY `id_pedido` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT de la tabla `pedido`
+--
+ALTER TABLE `pedido`
+  MODIFY `id_pedido` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- Restricciones para tablas volcadas
 --
@@ -195,8 +204,8 @@ ALTER TABLE `chuches`
 -- Filtros para la tabla `contiene`
 --
 ALTER TABLE `contiene`
-  ADD CONSTRAINT `contiene_ibfk_1` FOREIGN KEY (`id_pedido`) REFERENCES `pedido` (`id_pedido`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `contiene_ibfk_2` FOREIGN KEY (`id_chuche`) REFERENCES `chuches` (`id_chuche`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `contiene_ibfk_4` FOREIGN KEY (`id_chuche`) REFERENCES `chuches` (`id_chuche`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `contiene_ibfk_5` FOREIGN KEY (`id_pedido`) REFERENCES `pedido` (`id_pedido`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `pedido`
