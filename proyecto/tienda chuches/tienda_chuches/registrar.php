@@ -1,3 +1,6 @@
+<?php
+  ob_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -5,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registrar</title>
     <link rel="stylesheet" type="text/css" href="login.css">
+    <link rel="shortcut icon" href="img/logo.ico">
 
   </head>
   <body>
@@ -26,6 +30,7 @@
                 <span>Repita la contraseña:</span><input type="password" name="cont2" placeholder="contraseña"maxlength='64' required><br>
                 <span>Email:</span><input type="email" name="email" placeholder="email" maxlength='50' ><br>
                 <span>Direccion:</span><input type="text" name="direccion" placeholder="direccion" maxlength='50'required><br>
+                <span>Telefono:</span><input type="text" name="tel" placeholder="telefono" maxlength='9'  pattern='[0-9]{9}' title='Solo numeros' requiered><br>
     	          <input id="entrar" type="submit" value="Enviar" name="send">
                 <p class="mensage"> <a href="login.php">Atras</a></p>
 
@@ -35,13 +40,7 @@
       <?php else: ?>
 
       <?php
-        //CREATING THE CONNECTION
-        $connection = new mysqli('localhost', 'root', '3546', 'tienda_chuches');
-       //TESTING IF THE CONNECTION WAS RIGHT
-       if ($connection->connect_errno) {
-        printf("Connection failed: %s\n", $connection->connect_error);
-      exit();
-    }
+      include_once("connection.php");
   ?>
 
   <?php
@@ -53,10 +52,11 @@
     $cont2=$_POST['cont2'];
     $email=$_POST['email'];
     $dir=$_POST['direccion'];
+    $tel=$_POST['tel'];
 
 
     if ($cont==$cont2){
-            $consulta= "INSERT INTO cliente VALUES('$nom','$ape','$dir','$apodo','$email',MD5('$cont'));";
+            $consulta= "INSERT INTO cliente VALUES('$nom','$ape','$dir','$apodo','$email',MD5('$cont'),'$tel');";
             $result = $connection->query($consulta);
             if (!$result) {
               echo "<script>
@@ -68,6 +68,9 @@
               setTimeout('redireccionar2()',5);
               </script>";
             } else {
+              $_SESSION["user"]=$apodo;
+              $_SESSION["language"]="es";
+              var_dump($apodo);
               echo "<script>;
                 alert ('Usuario registrado, bienvenid@ $nom');
                 var pag='login.php'

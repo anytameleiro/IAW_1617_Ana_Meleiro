@@ -1,9 +1,13 @@
+<?php
+  ob_start();
+?>
 <!DOCTYPE html>
 <html lang="">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="../estilotabla.css">
+  <link rel="shortcut icon" href="../../img/logo.ico">
   <title>Tabla categoria</title>
 
 </head>
@@ -41,13 +45,7 @@
       <tbody>
 
     <?php
-     //Crear conexion.
-     $connection = new mysqli("localhost", "root", "3546", "tienda_chuches");
-     //Prueba conexion correcta.
-     if ($connection->connect_errno) {
-          printf("Connection failed: %s\n", $connection->connect_error);
-          exit();
-      }
+     include_once("../../connection.php");
       //Consulta.
       if ($result = $connection->query("SELECT * FROM categoria;")) {
 

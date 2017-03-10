@@ -1,9 +1,13 @@
+<?php
+  ob_start();
+?>
 <!DOCTYPE html>
 <html lang="">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="../estilotabla.css">
+    <link rel="shortcut icon" href="../../img/logo.ico">
   <title>Tabla cliente</title>
   <style>
 
@@ -34,7 +38,8 @@
          <th>Apellidos</th>
          <th>Direccion</th>
          <th>Apodo</th>
-         <th>email</th>
+         <th>Email</th>
+         <th>Telefono</th>
          <th>Modificar</th>
          <th>Borrar</th>
        </tr>
@@ -46,13 +51,7 @@
       <tbody>
 
     <?php
-     //Crear conexion.
-     $connection = new mysqli("localhost", "root", "3546", "tienda_chuches");
-     //Prueba conexion correcta.
-     if ($connection->connect_errno) {
-          printf("Connection failed: %s\n", $connection->connect_error);
-          exit();
-      }
+       include_once("../../connection.php");
       //Consulta.
       if ($result = $connection->query("SELECT * FROM cliente ORDER BY nombre;")) {
       } else {
@@ -63,12 +62,12 @@
       while($obj = $result->fetch_object()) {
 
         echo "<tr>";
-        echo "<td>".$obj->nombre."</td>";
-        echo "<td>".$obj->apellidos."</td>";
-        echo "<td>".$obj->direccion."</td>";
-        echo "<td>".$obj->apodo."</td>";
-        echo "<td>".$obj->email."</td>";
-
+        echo "<td><a href='../pedido/pedido.php?apo=$obj->apodo'>".$obj->nombre."</a></td>";
+        echo "<td><a href='../pedido/pedido.php?apo=$obj->apodo'>".$obj->apellidos."</a></td>";
+        echo "<td><a href='../pedido/pedido.php?apo=$obj->apodo'>".$obj->direccion."</a></td>";
+        echo "<td><a href='../pedido/pedido.php?apo=$obj->apodo'>".$obj->apodo."</a></td>";
+        echo "<td><a href='../pedido/pedido.php?apo=$obj->apodo'>".$obj->email."</a></td>";
+        echo "<td><a href='../pedido/pedido.php?apo=$obj->apodo'>".$obj->telefono."</a></td>";
               //modificar
               echo "<td>
                     <a href='modificarcliente.php?apo=$obj->apodo'/>

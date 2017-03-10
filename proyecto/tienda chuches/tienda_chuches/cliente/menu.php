@@ -1,27 +1,23 @@
+<?php
+  ob_start();
+?>
 <!DOCTYPE html>
 <html lang="">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
 <title></title>
 </head>
 
 <body>
 <?php
-session_start();
+
 
 if (isset($_SESSION["user"])) {
 
 
-//CREATING THE CONNECTION
-$connection = new mysqli("localhost", "root", "3546", "tienda_chuches");
-
-//TESTING IF THE CONNECTION WAS RIGHT
-if ($connection->connect_errno) {
-    printf("Connection failed: %s\n", $connection->connect_error);
-    exit();
-}
+include_once("../../connection.php");
 
 ?>
 <div id="cuerpo">
@@ -36,7 +32,7 @@ echo"<br><a id='perfil' href='perfil.php'>mi perfil</a>";
 </div>
   <nav class="princ">
   <ul id="first_level">
-    <li class="menup"><a href="principal.php" data-title='Principal'>Principal</a></li>
+    <li class="menup"><a href="principal.php" data-title='Inicio'>Inicio</a></li>
 <?php
 //MAKING A SELECT QUERY
 

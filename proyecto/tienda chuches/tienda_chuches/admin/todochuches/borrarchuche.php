@@ -1,9 +1,14 @@
+<?php
+  ob_start();
+?>
 <!DOCTYPE html>
 <html lang="">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <title>Borrar chuche</title>
+    <link rel="stylesheet" type="text/css" href="../estilotabla.css">
+      <link rel="shortcut icon" href="../../img/logo.ico">
 </head>
 
 <body>
@@ -12,14 +17,8 @@
     session_start();
 
     if (isset($_SESSION["admin"])) {
-    //Crear conexion.
-    $connection = new mysqli("localhost", "root", "3546", "tienda_chuches");
-    //Prueba conexion correcta.
-    if ($connection->connect_errno) {
-          printf("Connection failed: %s\n", $connection->connect_error);
-          exit();
-    }
 
+    include_once("../../connection.php");
 
        //Transformar $_GET en id_chuche.
        foreach ($_GET as $key => $item)
@@ -28,13 +27,26 @@
            $obj = $result->fetch_object();
            $image = $obj->img_chu;
              //Borrar.
-               if ($result1 = $connection->query("DELETE FROM contiene where id_chuche=$item;")) {
+             if ($result3 = $connection->query("DELETE  FROM pedido WHERE id_pedido=(SELECT id_pedido from contiene where id_chuche=$item);")) {
+              if ($result1 = $connection->query("DELETE FROM contiene where id_chuche=$item;")) {
+
+
+
                    //Borrar.
-                   if ($result1 = $connection->query("DELETE FROM chuches where id_chuche=$item;")) {
+                   if ($result2 = $connection->query("DELETE FROM chuches where id_chuche=$item;")) {
                       unlink("$image");
-                       echo "<h1>chuche $item ha sido borrada.</h1><br>";
+                      //  echo "<h1>chuche $item ha sido borrada.</h1><br>";
+                      echo"<script>;
+                        alert ('chuche $item ha sido borrada');
+                        var pag='chuches.php?idcat=$obj->id_categoria'
+                        function redireccionar(){
+                          location.href=pag;
+                        }
+                        setTimeout('redireccionar()',5);
+                        </script>";
                    }
                }
+             }
            }else{
                  mysqli_error($connection);
                }

@@ -1,9 +1,13 @@
+<?php
+  ob_start();
+?>
 <!DOCTYPE html>
 <html lang="">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="../estilotabla.css">
+  <link rel="shortcut icon" href="../../img/logo.ico">
   <title>Todas las chuches</title>
   <style>
 
@@ -34,7 +38,9 @@
          <th>precio</th>
          <th>Imagen</th>
          <th>Modificar</th>
+         <th>Cambiar imagen</th>
          <th>Borrar</th>
+
        </tr>
      </table>
      </div>
@@ -42,13 +48,7 @@
      <table>
       <tbody>
     <?php
-     //Crear conexion.
-     $connection = new mysqli("localhost", "root", "3546", "tienda_chuches");
-     //Prueba conexion correcta.
-     if ($connection->connect_errno) {
-          printf("Connection failed: %s\n", $connection->connect_error);
-          exit();
-      }
+       include_once("../../connection.php");
       //Consulta.
       if ($result = $connection->query("SELECT * from chuches inner join
      categoria on categoria.id_categoria=chuches.id_categoria ORDER BY chuches.nombre_chu;")) {
@@ -58,11 +58,15 @@
       }
       //Introducir los datos en la tabla.
       while($obj = $result->fetch_object()) {
-
+            $hola=$obj->descripcion;
               echo "<tr>";
               echo "<td>".$obj->nombre_cat."</td>";
               echo "<td>".$obj->nombre_chu."</td>";
-              echo "<td>".$obj->descripcion."</td>";
+              $stringDisplay=substr(strip_tags($hola),0,100);
+              if(strlen(strip_tags($hola))>100){
+                $stringDisplay.='...';
+              }
+              echo "<td>".$stringDisplay."</td>";
               echo "<td>".$obj->precio." € </td>";
               if (!empty($obj->img_chu)){
                 echo '<td><img src="'.$obj->img_chu.'"/></td>';
@@ -75,14 +79,21 @@
                     <a href='modificarchuche.php?id=$obj->id_chuche'/>
                     <img src='../img/modificar.png'/></a>
                     </td>";
+
+                    //modificar
+                    echo "<td>
+                          <a href='modificarimg.php?id=$obj->id_chuche'/>
+                          <img src='../img/img.png'/></a>
+                          </td>";
               //Borrar.
               echo "<td>
                     <a href='borrarchuche.php?id=$obj->id_chuche'>
                     <img src='../img/papelera.png'/></a>
                     </td>";
-              echo "</tr>";
-         }
 
+
+         }
+    echo "</tr>";
 
           ?>
 

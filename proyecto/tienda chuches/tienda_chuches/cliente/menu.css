@@ -1,18 +1,23 @@
 
 #cuerpo {
 
-   background-color: rgba(48, 80, 130, 0.4);
-    width: 1250px;
+background-color: #425470;
+    min-width: 1250px;
+  width:93%;
     margin-left: 50px;
-    border-radius: 20px;
+    border-radius: 3px;
     text-align: center;
-
+color: white;
+padding-bottom: 10px;
+padding-right: 10px;
+padding-top:  1px;
+box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.3), 0 5px 5px 0 rgba(0, 0, 0, 0.34);
 }
 .princ {
     float: left;
     transform-style: preserve-3d;
-    width:  1334px;
-
+     min-width: 1334px;
+  width:93%;
 }
 .princ ul {
   list-style: none;
@@ -61,11 +66,14 @@
 }
 #salir{
   float: right;
+  color: white;
 }
 #perfil{
   float: right;
+  color: white;
 }
 a{
 color:black;
   text-decoration: none;
 }
+

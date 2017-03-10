@@ -1,10 +1,14 @@
+<?php
+  ob_start();
+?>
 <!DOCTYPE html>
 <html lang="">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>modificar categoria</title>
+    <title>Modificar categoria</title>
       <link rel="stylesheet" type="text/css" href="../formulario.css">
+        <link rel="shortcut icon" href="../../img/logo.ico">
     </head>
     <body>
 
@@ -15,12 +19,8 @@
       if (isset($_SESSION["admin"])) {
         echo "<h1>Modificar</h1>";
       $idcat = $_GET['idcat'];
-      $connection = new mysqli('localhost', 'root', '3546', 'tienda_chuches');
+    include_once("../../connection.php");
 
-      if ($connection->connect_errno) {
-          printf("Connection failed: %s\n", $connection->connect_error);
-          exit();
-      }
       if ($result = $connection->query("SELECT * from categoria
         where id_categoria = $idcat;")) {
 
@@ -52,7 +52,7 @@
         $nombre=$_POST['nombre'];
 
         //consulta
-        $consulta="UPDATE  `tienda_chuches`.`categoria` SET
+        $consulta="UPDATE `categoria` SET
         `nombre_cat` =  '$nombre'
         WHERE  `categoria`.`id_categoria` =$idcat;";
 

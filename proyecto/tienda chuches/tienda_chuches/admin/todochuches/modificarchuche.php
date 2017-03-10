@@ -1,3 +1,6 @@
+<?php
+  ob_start();
+?>
 <!DOCTYPE html>
 <html lang="">
   <head>
@@ -5,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>modificar chuche</title>
     <link rel="stylesheet" type="text/css" href="../formulario.css">
+      <link rel="shortcut icon" href="../../img/logo.ico">
     </head>
     <body>
 
@@ -15,14 +19,9 @@
       if (isset($_SESSION["admin"])) {
         echo "<h1>Modificar</h1>";
       $id = $_GET['id'];
-      $connection = new mysqli('localhost', 'root', '3546', 'tienda_chuches');
-
-      if ($connection->connect_errno) {
-          printf("Connection failed: %s\n", $connection->connect_error);
-          exit();
-      }
-      if ($result = $connection->query("SELECT * from chuches
-        where id_chuche = '$id';")) {
+      include_once("../../connection.php");
+      if ($result = $connection->query("SELECT c.*, ca.nombre_cat from chuches c join categoria ca on c.id_categoria=ca.id_categoria
+        where c.id_chuche = '$id';")) {
 
         $obj = $result->fetch_object();
         echo"<div id='h'>";
@@ -40,18 +39,22 @@
 
         echo "<span>Categoria:</span><select name='cat' required><br><br>";
         while ($obj2=$result2->fetch_object()) {
-                  echo "<option>";
+          if($obj2->nombre_cat == $obj->nombre_cat){
+                  echo "<option selected>";
                   echo $obj2->nombre_cat;
                   echo "</option>";
+            }else{
+              echo "<option>";
+              echo $obj2->nombre_cat;
+              echo "</option>";
+            }
         }
                echo"</select>";
                $cat=$_POST['cat'];
-               $result3 = $connection->query("SELECT id_categoria FROM `tienda_chuches`.`categoria` WHERE `nombre_cat` = '$cat';");
+               $result3 = $connection->query("SELECT id_categoria FROM `categoria` WHERE `nombre_cat` = '$cat';");
                $obj3=$result3->fetch_object();
                $categoria= $obj3->id_categoria;
 
-  //       echo "<label>Product Image: </label>
-  // <input class='form-control' type='file' name='image' required />";
 
 echo"</div>";
         echo "<button name='edit'>Modificar</button>";
@@ -73,21 +76,17 @@ echo"</div>";
         $precio=$_POST['precio'];
 
 
-        // $categoria=$obj2->id_categoria;
 
-        // $imagen=$_POST['imagen'];
 
         //consulta
-        $consulta="UPDATE  `tienda_chuches`.`chuches` SET
+        $consulta="UPDATE `chuches` SET
 
         `nombre_chu` =  '$nombre',
         `descripcion` =  '$desc',
         `precio` =  '$precio',
         `id_categoria`='$categoria'
-        -- ,
-        -- `id_categoria`=$categoria
 
-        -- `img_chu` =  '$imagen'
+
         WHERE  `chuches`.`id_chuche` = '$id';";
 
 

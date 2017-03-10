@@ -1,5 +1,5 @@
 span {
-  width: 200px;
+  width: 150px;
   display: inline-block;
   margin-bottom: 21px;
 
@@ -20,7 +20,7 @@ text-align: center;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.9), 0 5px 5px 0 rgba(0, 0, 0, 0.95);
   background: #229366;
   border-radius:20px;
-  width: 600px;
+  width: 700px;
   margin: auto;
   color: white;
 
@@ -49,4 +49,8 @@ button{
 }
 button:hover{
   background-color: #052f1e;
+}
+#d{
+  position:relative;
+  top:-160px;
 }

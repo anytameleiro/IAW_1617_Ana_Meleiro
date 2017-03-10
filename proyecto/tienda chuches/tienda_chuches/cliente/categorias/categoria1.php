@@ -1,3 +1,6 @@
+<?php
+  ob_start();
+?>
 <!DOCTYPE html>
 <html lang="">
 <head>
@@ -5,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="../menu.css">
   <link rel="stylesheet" type="text/css" href="categoria.css">
-
+  <link rel="shortcut icon" href="../../img/logo.ico">
   <title>TODO CHUCHES</title>
   <style>
 
@@ -27,17 +30,7 @@
 
     include_once("../menu.php");
 
-
-
-    //CREATING THE CONNECTION
-    $connection = new mysqli("localhost", "root", "3546", "tienda_chuches");
-
-    //TESTING IF THE CONNECTION WAS RIGHT
-    if ($connection->connect_errno) {
-        printf("Connection failed: %s\n", $connection->connect_error);
-        exit();
-    }
-
+    include_once("../connection.php");
     //MAKING A SELECT QUERY
 
     $consulta="SELECT * from chuches inner join
@@ -46,7 +39,7 @@
     if ($result = $connection->query($consulta)) {
     }else {
 
-          echo "Error: ". $sql ."<br>". mysqli_error($connection);
+          echo "Error: ". $result."<br>". mysqli_error($connection);
     }
 
 
@@ -72,7 +65,7 @@
   }
   echo" </div>";
     echo" </div>";
-
+include_once("../info.php");
           $result->close();
           unset($obj);
           unset($connection);

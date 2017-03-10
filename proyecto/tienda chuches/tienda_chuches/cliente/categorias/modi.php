@@ -1,3 +1,6 @@
+<?php
+  ob_start();
+?>
 <!DOCTYPE html>
 <html lang="">
   <head>
@@ -5,7 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>modificar chuche</title>
     <link rel="stylesheet" type="text/css" href="../menu.css">
-
+    <link rel="stylesheet" type="text/css" href="categoria.css">
+      <link rel="shortcut icon" href="../../img/logo.ico">
     <title>TODO CHUCHES</title>
     <body>
 
@@ -15,18 +19,20 @@
 
       if (isset($_SESSION["user"])) {
           include_once("../menu.php");
+          echo" <div class='login1'>
+            <div id='login2'>";
+            echo"<table>
+            <tr><td id='m' valign='top'>";
+          include_once("../menuv.php");
+          echo"<td>";
+          echo"<div id='blanco'>";
         echo "<h1>Modificar perfil</h1>";
+
       $apo = $_GET['apo'];
-      $connection = new mysqli('localhost', 'root', '3546', 'tienda_chuches');
+      include_once("../connection.php");
+        if ($result2 = $connection->query("SELECT * from cliente where apodo ='$apo';")) {
 
-      if ($connection->connect_errno) {
-          printf("Connection failed: %s\n", $connection->connect_error);
-          exit();
-      }
-
-        if ($result = $connection->query("SELECT * from cliente where apodo ='$apo';")) {
-
-        $obj = $result->fetch_object();
+        $obj = $result2->fetch_object();
 
         echo"<div id='h'>";
         echo "<form method='post'>";
@@ -36,12 +42,19 @@
         echo "<span>Direccion:</span><input maxlength='50' name='direc' value='$obj->direccion' required/><br><br>";
         echo "<span>Apodo:</span><input maxlength='25' name='apodo' value='$obj->apodo' required/><br><br>";
         echo "<span>Email:</span><input maxlength='50' name='email' value='$obj->email'/><br><br>";
+        echo "<span>Telefono:</span><input maxlength='9'  pattern='[0-9]{9}' name='tel' value='$obj->telefono' title='Solo numeros' required/><br><br>";
+
 
         echo"</div>";
         echo "<button name='edit'>Modificar</button>";
         echo"</div>";
         echo"</form>";
-        echo "<br><a href='perfil.php'>Atras</a>";
+        echo"</div>";
+      echo"</td>";
+
+    echo"</table>";
+    echo" </div>";
+      echo" </div>";
 
 
       } else {
@@ -60,53 +73,37 @@
         $direccion=$_POST['direc'];
         $apodo=$_POST['apodo'];
         $email=$_POST['email'];
-
+        $tel=$_POST['tel'];
         //consulta
-        $consulta="UPDATE  `tienda_chuches`.`cliente` SET
+        $consulta="UPDATE `cliente` SET
 
 
         `nombre` = '$nombre',
         `apellidos` = '$apellido',
         `direccion` = '$direccion',
         `apodo` = '$apodo',
-        `email` = '$email'
+        `email` = '$email',
+        `telefono` ='$tel'
         WHERE  `cliente`.`apodo` = '$apo';";
 
+        $result = $connection->query($consulta);
         // echo $consulta;
-        if ($result = $connection->query($consulta)){
-          header ("Location: perfil.php");
-        } else {
-              echo "Error: " . $result . "<br>" . mysqli_error($connection);
+        if (!$result) {
+          echo "<script>
+          alert ('Este apodo ya existe, escriba otro')
+          var pag='modi.php?apo=$apo'
+          function redireccionar2(){
+            location.href=pag;
           }
-      }
-
-      if (isset($_POST['modi'])) {
-
-
-        //variables
-
-        $nombre=$_POST['nom'];
-        $apellido=$_POST['ape'];
-        $direccion=$_POST['direc'];
-        $email=$_POST['email'];
-
-        //consulta
-        $consulta="UPDATE  `tienda_chuches`.`cliente` SET
-
-
-        `nombre` = '$nombre',
-        `apellidos` = '$apellido',
-        `direccion` = '$direccion',
-        `email` = '$email'
-        WHERE  `cliente`.`apodo` = '$apo';";
-
-
-        if ($result = $connection->query($consulta)){
-          header ("Location: perfil.php");
-        } else {
-              echo "Error: " . $result . "<br>" . mysqli_error($connection);
+          setTimeout('redireccionar2()',5);
+          </script>";
+        }else {
+                header ("Location: perfil.php");
           }
+
       }
+include_once("../info.php");
+
       unset($connection);
 
 

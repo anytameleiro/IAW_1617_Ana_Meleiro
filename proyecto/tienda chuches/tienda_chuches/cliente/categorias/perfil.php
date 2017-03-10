@@ -1,10 +1,14 @@
+<?php
+  ob_start();
+?>
 <!DOCTYPE html>
 <html lang="">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="../menu.css">
-
+<link rel="stylesheet" type="text/css" href="categoria.css">
+  <link rel="shortcut icon" href="../../img/logo.ico">
   <title>TODO CHUCHES</title>
 
 </head>
@@ -18,18 +22,21 @@
   if (isset($_SESSION["user"])) {
 
     include_once("../menu.php");
+
+
+
+    echo" <div class='login1'>
+      <div id='login2'>";
+      echo"<table>
+      <tr><td id='m' valign='top'>";
+    include_once("../menuv.php");
+
+
+    echo"<td>";
+    echo"<div id='blanco'>";
     echo "<h1>Mi perfil</h1>";
 
-
-    //CREATING THE CONNECTION
-    $connection = new mysqli("localhost", "root", "3546", "tienda_chuches");
-
-    //TESTING IF THE CONNECTION WAS RIGHT
-    if ($connection->connect_errno) {
-        printf("Connection failed: %s\n", $connection->connect_error);
-        exit();
-    }
-$user=$_SESSION["user"];
+include_once("../connection.php");
 
     //MAKING A SELECT QUERY
 
@@ -47,13 +54,16 @@ $user=$_SESSION["user"];
     echo "<strong>Apellidos: </strong>".$obj->apellidos."<br><br>";
     echo "<strong>Direccion: </strong>".$obj->direccion."<br><br>";
     echo "<strong>Email: </strong>".$obj->email."<br><br>";
+    echo "<strong>Telefono: </strong>".$obj->telefono."<br><br>";
 
-  unset($obj);
-echo"<a href='modi.php?apo=$user'>Modificar perfil</a><br>";
-echo"<a href='contrasenia.php?apo=$user'>Cambiar contraseña</a><br>";
-echo"<a href='pedidos.php'>Pedidos</a>";
+    echo"</div>";
+  echo"</td>";
 
+echo"</table>";
 
+echo" </div>";
+  echo" </div>";
+include_once("../info.php");
 
   } else {
     session_destroy();

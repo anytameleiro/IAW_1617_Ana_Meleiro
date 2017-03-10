@@ -1,4 +1,7 @@
 <?php
+  ob_start();
+?>
+<?php
   session_start();
 ?>
 <!DOCTYPE html>
@@ -6,8 +9,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>inicia_sesion</title>
+    <title>Iniciar_sesion</title>
     <link rel="stylesheet" type="text/css" href="login.css">
+    <link rel="shortcut icon" href="img/logo.ico">
+
   </head>
   <body>
 
@@ -15,14 +20,7 @@
         //FORM SUBMITTED
         if (isset($_POST["user"])) {
 
-          //CREATING THE CONNECTION
-          $connection = new mysqli("localhost", "root", "3546", "tienda_chuches");
-
-          //TESTING IF THE CONNECTION WAS RIGHT
-          if ($connection->connect_errno) {
-              printf("Connection failed: %s\n", $connection->connect_error);
-              exit();
-          }
+          include_once("connection.php");
 
           //MAKING A SELECT QUERY
           //Password coded with md5 at the database. Look for better options
@@ -54,8 +52,7 @@
 
                 $_SESSION["language"]="es";
                 header("Location: cliente/categorias/principal.php");
-                
-                // header("Location: cliente/categorias/principal.php?apodo=$username");
+
               }
 
           } else {

@@ -8,7 +8,10 @@ body {
  ul, li {
 
 	list-style: none;
+        position:relative;
 }
+
+
 
 .planContainer{
 	padding-left: 0px;
@@ -21,7 +24,8 @@ body {
 	float: left;
 	text-align: center;
 	border-radius: 5px;
-	width: 250px;
+	width: 277px;
+	height: 400px;
 	margin: 0 20px 20px 0;
 	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.4), 0 5px 5px 0 rgba(0, 0, 0, 0.44);
 
@@ -50,19 +54,156 @@ body {
 
 .login1 {
 
-  padding: 8% 0 0;
+  
   margin: auto;
 
 }
 #login2 {
 
   border-radius:20px;
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.4);
   background-attachment: fixed;
 	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 	clear:both;
  	float:left;
  	overflow:hidden;
-  width: 1250px;
+  min-width: 1250px;
+  width:93%;
  	margin-left: 50px;
+	margin-bottom:  20px;
+	padding-bottom:  10px;
+}
+table{
+	text-align: center;
+}
+
+.content
+{
+	position: relative;
+	margin-top: 20px;
+	width: 150px;
+}
+
+.u a
+{
+	display: block;
+	background: #F8F8F8;
+	width: 240px;
+	height: 40px;
+	padding: 0 0 0 10px;
+	font: bold 13px Helvetica, sans-serif;
+	text-transform: uppercase;
+	text-decoration: none;
+	color: rgba( 0, 0, 0, 0.4 );
+	line-height: 40px;
+		box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.u a:nth-child( 2 )
+{
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+}
+
+.u a:last-child
+{
+	border-bottom-left-radius: 3px;
+	border-bottom-right-radius: 3px;
+}
+
+.u a:hover { color: #555555; }
+
+.u a:hover > .octicon { color: #555555; }
+
+.arrow
+{
+	width: 0;
+	height: 0;
+	margin-left: 15px;
+	border-left: 7px solid transparent;
+	border-right: 7px solid transparent;
+	border-bottom: 9px solid #F8F8F8;
+}
+#m{
+	padding-left:  50px;
+	padding-right:  250px;
+}
+#blanco{
+	background-color: white;
+	padding: 50px;
+	border-radius: 20px;
+	color: rgba( 0, 0, 0, 0.7 );
+	margin-top: 20px;
+}
+span{
+	width: 150px;
+	display: inline-block;
+	margin-bottom: 21px;
+}
+button{
+  width: 80%;
+  border: 0;
+  padding: 13px;
+  font-size: 15px;
+  background-color:#8d7b8c;
+  border-radius:20px;
+  color: black;
+
+}
+button:hover{
+  background-color: #635762;
+}
+input[type="number"] {
+   width:50px;
+}
+#desc{
+
+	padding: 25px;
+	width: 450px;
+	height: 180px;
+	  overflow-x:auto;
+		background-color: rgba(255,255,255,0.9);
+	border-radius: 20px;
+}
+#atras{
+	background-color: #425470;
+	padding: 10px;
+	border-radius: 20px;
+	color:white;
+}
+#table{
+	margin: 20px;
+}
+
+#td{
+	width: 500px;
+}
+#dos{
+      border: rgba( 0, 0, 0, 0.4 ) 1px solid ;
+      text-align:center;
+      border-collapse: collapse;
+      padding: 8px;
+  }
+	#negro{
+		background-color:#425470;
+		border-radius: 20px;
+		color: white;
+		margin-top: 10px;
+		min-width: 1250px;
+  width:93%;
+		padding: 1px;
+		font-size: 12px;
+		clear: both;
+		overflow: hidden;
+
+		box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.3), 0 5px 5px 0 rgba(0, 0, 0, 0.34);
+		margin-left: 50px;
+		text-align: center;
+	}
+#first_level{
+  margin:10px auto;
+  padding: 5px;
+  list-style:none;
+  tex-aling:center;
+  margin-left:32px;
 }

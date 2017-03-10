@@ -1,9 +1,13 @@
+<?php
+  ob_start();
+?>
 <!DOCTYPE html>
 <html lang="">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" type="text/css" href="formulario.css">
+  <link rel="shortcut icon" href="../img/logo.ico">
   <title>Contraseña</title>
 
 
@@ -19,14 +23,7 @@
 
     echo "<h1>Cambiar contraseña</h1>";
 
-    //CREATING THE CONNECTION
-    $connection = new mysqli("localhost", "root", "3546", "tienda_chuches");
-
-    //TESTING IF THE CONNECTION WAS RIGHT
-    if ($connection->connect_errno) {
-        printf("Connection failed: %s\n", $connection->connect_error);
-        exit();
-    }
+  include_once("../connection.php");
 
     echo"<div id='h'>";
     echo "<form method='post'>";
@@ -62,7 +59,7 @@ echo"</div>";
     if ($obj->contrasenia==$cont2){
 
       if ($contnu==$contnu2){
-        $consulta="UPDATE  `tienda_chuches`.`cliente` SET `contrasenia` = '$contnu2'
+        $consulta="UPDATE `cliente` SET `contrasenia` = '$contnu2'
         WHERE  `cliente`.`apodo` = 'admin';";
 
         if ($result = $connection->query($consulta)){
