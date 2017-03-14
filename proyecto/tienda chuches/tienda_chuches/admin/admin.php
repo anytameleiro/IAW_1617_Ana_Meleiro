@@ -25,7 +25,7 @@
     <h1>Bienvenido administrador</h1>
 
 
-    <ul class="link" >
+    <ul class="link" id="admin" >
     <li>
       <a href="todochuches/chuches.php">  <span>Todas las chuches  </span></a>
 

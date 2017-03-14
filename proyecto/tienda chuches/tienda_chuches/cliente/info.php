@@ -34,9 +34,9 @@ echo"<h3>Informacion</h3>";
     }
     $obj = $result->fetch_object();
 
-    echo "<span>".$obj->email."</span>";
-    echo "<span>".$obj->telefono."</span>";
-    echo "<span>".$obj->direccion."</span>";
+    echo "<span>Email: ".$obj->email."</span>";
+    echo "<span>Tlf: ".$obj->telefono."</span>";
+    echo "<span>Direccion: ".$obj->direccion."</span>";
 
     echo"</div>";
 

@@ -25,7 +25,7 @@ if (isset($_SESSION["admin"])) {
          if ($result = $connection->query("SELECT * FROM chuches where id_chuche=$item;")) {
            $obj = $result->fetch_object();
            $image = $obj->img_chu;
-           if ($result3 = $connection->query("DELETE  FROM pedido WHERE id_pedido=(SELECT id_pedido from contiene where id_chuche=$item);")) {
+           if ($result3 = $connection->query("DELETE  FROM pedido WHERE id_pedido IN (SELECT id_pedido from contiene where id_chuche=$item);")) {
              //Borrar.
                if ($result1 = $connection->query("DELETE FROM contiene where id_chuche=$item;")) {
                    //Borrar.

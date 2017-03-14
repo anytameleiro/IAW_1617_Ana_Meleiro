@@ -65,13 +65,15 @@ body {
   background-attachment: fixed;
 	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 	clear:both;
- 	float:left;
  	overflow:hidden;
-  min-width: 1250px;
+  min-width: 1260px;
   width:93%;
- 	margin-left: 50px;
-	margin-bottom:  20px;
+ 	
 	padding-bottom:  10px;
+        margin:10px auto;
+  padding: 5px;
+  list-style:none;
+  tex-aling:center;
 }
 table{
 	text-align: center;
@@ -140,6 +142,9 @@ span{
 	display: inline-block;
 	margin-bottom: 21px;
 }
+#negro span{
+width: 250px;
+}
 button{
   width: 80%;
   border: 0;
@@ -184,12 +189,12 @@ input[type="number"] {
       border-collapse: collapse;
       padding: 8px;
   }
-	#negro{
+#negro{
 		background-color:#425470;
 		border-radius: 20px;
 		color: white;
 		margin-top: 10px;
-		min-width: 1250px;
+		min-width: 1260px;
   width:93%;
 		padding: 1px;
 		font-size: 12px;
@@ -197,13 +202,14 @@ input[type="number"] {
 		overflow: hidden;
 
 		box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.3), 0 5px 5px 0 rgba(0, 0, 0, 0.34);
-		margin-left: 50px;
+		
 		text-align: center;
-	}
+                    margin: 10px auto;
+    
+}
 #first_level{
-  margin:10px auto;
-  padding: 5px;
-  list-style:none;
-  tex-aling:center;
-  margin-left:32px;
+  min-width: 1260px;
+  margin: 10px auto;
+    padding: 5px;
+       text-align: center;
 }

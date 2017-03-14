@@ -2,25 +2,25 @@
 #cuerpo {
 
 background-color: #425470;
-    min-width: 1250px;
+    min-width: 1260px;
   width:93%;
-    margin-left: 50px;
     border-radius: 3px;
-    text-align: center;
 color: white;
 padding-bottom: 10px;
 padding-right: 10px;
 padding-top:  1px;
 box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.3), 0 5px 5px 0 rgba(0, 0, 0, 0.34);
+ margin:10px auto;
+  padding: 5px;
+  list-style:none;
+  text-align: center;
 }
 .princ {
-    float: left;
     transform-style: preserve-3d;
-     min-width: 1334px;
-  width:93%;
 }
 .princ ul {
   list-style: none;
+  min-width: 1260px;
 }
 .princ li {
     display: inline-block;
@@ -76,4 +76,4 @@ a{
 color:black;
   text-decoration: none;
 }
-
+	

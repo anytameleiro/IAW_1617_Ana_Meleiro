@@ -79,7 +79,7 @@
         $tel=$_POST['tel'];
 
         //consulta
-        $consulta="UPDATE  `tienda_chuches`.`cliente` SET
+        $consulta="UPDATE `cliente` SET
 
 
         `nombre` = '$nombre',

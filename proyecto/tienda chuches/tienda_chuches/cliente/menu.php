@@ -21,14 +21,23 @@ include_once("../../connection.php");
 
 ?>
 <div id="cuerpo">
-<p><a id="salir" href='../../salir.php' >Cerrar sesion</a></p>
+<table>
+<tr >
+<td>
+<img src="../fondoimg/logo.png" style="width: 140px;padding-left: 20px;"/>
+</td>
+<td style="width: 90%;">
+<p><a id="salir" href='../../salir.php' >Cerrar sesion</a></p><br>
 <?php
 
-echo"<br><a id='perfil' href='perfil.php'>mi perfil</a>";
+echo"<br><a id='perfil' href='perfil.php'>Mi perfil</a>";
 
 ?>
 
 <h1>TODO CHUCHES</h1>
+</td>
+</tr>
+</table>
 </div>
   <nav class="princ">
   <ul id="first_level">

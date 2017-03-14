@@ -31,7 +31,7 @@
 
            }else{
 
-             if ($result3 = $connection->query("DELETE from  contiene where id_pedido=(select id_pedido from pedido where pedido.apodo='$item');")) {
+             if ($result3 = $connection->query("DELETE from  contiene where id_pedido IN (select id_pedido from pedido where pedido.apodo='$item');")) {
                 // echo "hola1";
              if ($result1 = $connection->query("DELETE FROM pedido where apodo='$item';")) {    //Borrar.
 
